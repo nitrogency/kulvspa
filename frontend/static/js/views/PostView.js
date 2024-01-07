@@ -8,7 +8,7 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        const response = await fetch(`/static/js/posts/${this.postId}.html`);
+        const response = await fetch(`/static/posts/${this.postId}.html`);
         const html = await response.text();
         console.log(response);
         console.log(html);
