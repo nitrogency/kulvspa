@@ -4,14 +4,24 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>SPA</title>
-        <link rel="stylesheet" href="/static/css/index.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            a {
+                transition: background-color 0.3s ease, color 0.3s ease;
+                
+            }
+        </style>
     </head>
     <body>
-        <nav class="nav">
-            <a href="/" class="nav__link" data-link>Home</a>
-            <a href="/posts" class="nav__link" data-link>Posts</a>
-            <a href="/settings" class="nav__link" data-link>Settings</a>
-        </nav>
+        <div class="w3-top">
+            <div class="w3-bar w3-black w3-card w3-left-align w3-large">
+              <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-orange nav__link" data-link>Home</a>
+              <a href="/posts" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-orange nav__link" data-link>Posts</a>
+              <a href="/settings" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-orange nav__link" data-link>Settings</a>
+            </div>
         <div id="app"></div>
         <script type="module" src="/static/js/index.js"></script>
     </body>

@@ -11,7 +11,6 @@ export default class extends AbstractView {
         const response = await fetch(`/static/posts/${this.postId}.html`);
         const html = await response.text();
         return `
-            <h1>Post ${this.postId}</h1>
             ${html}
         `;
     }
