@@ -1,15 +1,31 @@
 {
   "name": "kulvpa",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:styles": "postcss -i ./frontend/static/css/input.css -o ./frontend/static/css/output.css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
-  }
+    "autoprefixer": "^10.4.16",
+    "express": "^4.18.2",
+    "postcss": "^8.4.33",
+    "postcss-cli": "^11.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitrogency/kulvspa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nitrogency/kulvspa/issues"
+  },
+  "homepage": "https://github.com/nitrogency/kulvspa#readme",
+  "description": ""
 }
