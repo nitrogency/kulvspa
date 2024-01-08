@@ -6,47 +6,39 @@
         <title>SPA</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css">
         <link rel="stylesheet" href="static/css/output.css">
+        <style>
+            nav a {
+                transition: background-color 0.3s ease, color 0.3s ease;
+
+            }
+            nav a:hover {
+                background-color: #111;
+                color: #fcb900;
+            }
+        </style>
     </head>
     <body>
-
-
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse nav__link" data-link>
-          <img src="static/css/flag.png" class="h-8" alt="litflag" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">kulvians</span>
-      </a>
-      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
-            <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
-          </li>
-          <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-        <nav class="bg-white border-gray-200 dark:bg-gray-900">
-            <a href="/" class="nav__link" data-link>Home</a>
-            <a href="/posts" class="nav__link" data-link>Posts</a>
-            <a href="/settings" class="nav__link" data-link>Settings</a>
+        <nav class="bg-bg-gray-900 border-gray-200 dark:bg-gray-900">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div class="flex space-x-3 items-center">
+                    <img src="static/css/flag.png" class="h-14" alt="litflag" />
+                    <div>
+                        <a href="/" class="self-center text-3xl font-semibold whitespace-nowrap nav__link" data-link>kulvians</a>
+                        <p class="text-sm">a dedicated translating community.</p>
+                    </div>
+                </div>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul class="font-semibold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
+                        <!--TODO: Link to index.js-->
+                        <li>
+                            <a href="/aboutUs" class="block py-2 px-3 text-black-900 rounded bg-transparent md:border-0 md:p-0 nav__link" data-link>About Us</a>
+                        </li>
+                        <li>
+                            <a href="/posts" class="block py-2 px-3 text-black-900 rounded bg-transparent md:border-0 md:p-0 nav__link" data-link>Contributions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
         <div id="app"></div>
         <script type="module" src="/static/js/index.js"></script>
