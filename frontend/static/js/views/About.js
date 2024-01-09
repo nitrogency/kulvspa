@@ -13,7 +13,7 @@ export default class extends AbstractView {
                     <h1 class="text-5xl font-extrabold dark:text-white pb-8">Who are we?</h1>
                     <div class="max-w-screen-xl">
                         <p class="text-lg font-normal lg:text-xl">
-                            We are a relatively small community of tech enthusiasts and translators from Lithuania who wish to preserve our language. Our idea of free translation was inspired by the <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" class="text-yellow-500 hover:underline" target="_blank"> FOSS movement</a>. Since software can be open-source, we decided to bring that same idea to another aspect of every program – localization.    
+                            We are a relatively small community of tech enthusiasts and translators from Lithuania who wish to preserve our language. Our idea of free translation was inspired by the <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" class="text-yellow-300 hover:underline" target="_blank"> FOSS movement</a>. Since software can be open-source, we decided to bring that same idea to another aspect of every program – localization.    
                         </p>
                     </div>
                     <h1 class="text-5xl font-extrabold dark:text-white pb-8">Why "Kulvians"?</h1>
