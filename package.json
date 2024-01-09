@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:styles": "postcss -i ./frontend/static/css/input.css -o ./frontend/static/css/output.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
