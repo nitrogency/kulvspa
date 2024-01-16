@@ -69,14 +69,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     
     await setLocale(defaultLocale);
+    bindLocaleSwitcher(defaultLocale);
     router();
 });
+
+function bindLocaleSwitcher(initialValue) {
+    const switcher =
+      document.querySelector("[data-i18n-switcher]");
+    switcher.value = initialValue;
+    switcher.onchange = (e) => {
+      setLocale(e.target.value);
+    };
+  }
 
 async function setLocale(newLocale) {
     if (newLocale === locale) return;
     const newTranslations = await fetchTranslationsFor(newLocale);
     locale = newLocale;
     translations = newTranslations;
+    translatePage();
 }
 
 async function fetchTranslationsFor(newLocale) {
