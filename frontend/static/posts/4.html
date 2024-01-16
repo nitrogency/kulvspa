@@ -16,18 +16,19 @@
             <div class="flex flex-col justify-start py-8 h-screen">
                 <h1 class="text-5xl text-left font-extrabold text-center pb-8">Reactive Resume</h1>
                 <ul class="text-lg list-disc font-normal lg:text-xl">
-                    <li>Status - <span class="highlight-done">DONE</span></li>
-                    <li>Type - Application</li>
-                    <li>Developers- Amruth Pillai</li>
-                    <li>Translators - Ben, rain</li>
-                    <li>Description:</li><br>
+                    <li><span data-i18n-key="status">Status - </span><span data-i18n-key="done" class="highlight-done">DONE</span></li>
+                    <li data-i18n-key="typeapp">Type - Application</li>
+                    <li><span data-i18n-key="devs">Developers - </span> Amruth Pillai</li>
+                    <li><span data-i18n-key="trans">Translators - </span> Ben, rain</li>
+                    <li data-i18n-key="desc">Description:</li><br>
                 </ul>
-                <p class="text-lg font-normal lg:text-xl">
+                <p data-i18n-key="resume_desc" class="text-lg font-normal lg:text-xl">
                     As described by the developer, “Reactive Resume is a free and open-source resume builder that simplifies the process of creating, updating, and sharing resumes.”<br><br>
                     So not only is it open-source, but it also quickens arguably the most boring part about applying for a job! You can find, use and support the tool <a href="https://rxresu.me/" class="text-yellow-300 hover:underline"target="_blank">here</a>. Make sure to give it a try!<br><br>
                     If you want to contribute to our translation or add your own, you can find the translation project <a href="https://crowdin.com/project/reactive-resume" class="text-yellow-300 hover:underline"target="_blank">here</a>.
                 </p>
             </div>
         </div>    
+        <script src="/static/js/translate.js"></script> 
     </body>
 </html>

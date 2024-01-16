@@ -16,16 +16,17 @@
             <div class="flex flex-col justify-start py-8 h-screen">
                 <h1 class="text-5xl text-left font-extrabold text-center pb-8">Melonracer</h1>
                 <ul class="text-lg list-disc font-normal lg:text-xl">
-                    <li>Status - <span class="highlight-done">DONE</span></li>
-                    <li>Type - Game</li>
-                    <li>Developers- figardo199</li>
-                    <li>Translators - Ben, rain</li>
-                    <li>Description:</li><br>
+                    <li><span data-i18n-key="status">Status - </span><span data-i18n-key="done" class="highlight-done">DONE</span></li>
+                    <li data-i18n-key="typegame">Type - Game </li>
+                    <li><span data-i18n-key="devs">Developers - </span> figardo199</li>
+                    <li><span data-i18n-key="trans">Translators - </span> Ben, rain</li>
+                    <li data-i18n-key="desc">Description:</li><br>
                 </ul>
-                <p class="text-lg font-normal lg:text-xl">
+                <p data-i18n-key="melonracer_desc" class="text-lg font-normal lg:text-xl">
                     This is a fun classic gamemode for Garry’s Mod, now in Lithuanian! You can make your own translation or find ours <a href="https://crowdin.com/project/melonracer" class="text-yellow-300 hover:underline"target="_blank">here</a>.
                 </p>
             </div>
-        </div>   
+        </div>  
+        <script src="/static/js/translate.js"></script> 
     </body>
 </html>

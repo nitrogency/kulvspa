@@ -1,0 +1,24 @@
+{
+    "title": "kulvians",
+    "subtitle": "a dedicated translating community.",
+    "about": "About Us",
+    "contributions": "Contributions",
+    "guides": "Guides",
+    "contact": "Contact us!",
+    "status": "Status - ",
+    "done": "DONE",
+    "typegame": "Type - Game",
+    "devs": "Developers - ",
+    "trans": "Translators - ",
+    "desc": "Description: ",
+    "rhythm_desc": "Rhythm Quest is an ambitious reinvention of the classic platformer, focusing on attacking, jumping and moving to… well, a rhythm!<br><br>It’s a very unique take on something we’ve all probably tried before, so if you want to see for yourself, you can check out the game and its demo <a href='https://rhythmquestgame.com/' class='text-yellow-300 hover:underline' target='_blank'>here</a>. The developer is very active and friendly, so make sure to support them if you enjoy the game.<br><br>The translation, which you can contribute to or add your own, is found <a href='https://crowdin.com/project/rhythm-quest' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "battlebit_desc": "BattleBit Remastered is a massively multiplayer online first-person shooter, most known for allowing up to 254 players to compete in player versus player matches on large maps. The game is strongly inspired by the Battlefield series.<br><br>We picked this for our first translation project due to our love of games like this. Plus, it’s only developed by three people! You can check out the game <a href='https://store.steampowered.com/app/671860/BattleBit_Remastered/' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "melonracer_desc": "This is a fun classic gamemode for Garry’s Mod, now in Lithuanian! You can make your own translation or find ours <a href='https://crowdin.com/project/melonracer' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "typeapp": "Type - Application",
+    "resume_desc": "As described by the developer, “Reactive Resume is a free and open-source resume builder that simplifies the process of creating, updating, and sharing resumes.”<br><br>So not only is it open-source, but it also quickens arguably the most boring part about applying for a job! You can find, use and support the tool <a href='https://rxresu.me/' class='text-yellow-300 hover:underline' target='_blank'>here</a>. Make sure to give it a try!<br><br>If you want to contribute to our translation or add your own, you can find the translation project <a href='https://crowdin.com/project/reactive-resume' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "bitwarden_desc": "<span class='italic font-semibold'>Note: We are NOT the only ones contributing to this translation. You can find all the contributors <a href='https://crowdin.com/project/bitwarden-desktop/lt' class='text-yellow-300 hover:underline' target='_blank'>here</a>.<br><br></span> <a href='https://bitwarden.com/' class='text-yellow-300 hover:underline' target='_blank'>Bitwarden</a> is a free open-source password management application, available on browser, desktop, and mobile phones.<br><br> We decided to contribute to this translation due to the quality and care the application is made with. Plus, it’s open source and free! What else could you ask for?",
+    "authext_desc": "This is a handy Firefox extension for generating two-factor authentication (2FA) codes in your browser. It supports TOTP, HOTP, and even Steam Guard!<br><br> And to make things even better, it’s open-source. You can find both the extension and it’s source code <a href='https://authenticator.cc/' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "crowdin_title": "Crowdin - setup guide",
+    "crowdin_subtitle": "Translation using crowdin.com"
+
+}
