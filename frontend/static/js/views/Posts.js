@@ -21,7 +21,8 @@ export default class extends AbstractView {
                     <div class="max-w-screen-xl text-center">
                         <p class="text-lg font-normal lg:text-xl"><a href="/posts/4" class="nav__link" data-link>Reactive Resume</a></p>
                         <p class="text-lg font-normal lg:text-xl"><a href="/posts/5" class="nav__link" data-link>Bitwarden - Desktop</a></p>
-                        <p class="text-lg font-normal lg:text-xl"><a href="/posts/6" class="nav__link" data-link>Authenticator Extension</a></p>    
+                        <p class="text-lg font-normal lg:text-xl"><a href="/posts/6" class="nav__link" data-link>Authenticator Extension</a></p>
+                        <p class="text-lg font-normal lg:text-xl"><a href="/posts/8" class="nav__link" data-link>jelu</a></p>    
                     </div>
                 </div>  
             </body>
