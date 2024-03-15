@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HTB - HTBank Guide - Parameter Injection</title>
+        <style>
+            .highlight-done {
+                font-weight: bold;
+                color: #eab308;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="max-w-screen-md mx-auto">
+            <div class="flex flex-col justify-start py-8 h-screen">
+                <h1 data-i18n-key="htb_htblabs_title" class="text-5xl text-left font-extrabold text-center pb-8">HTB - HTBank Guide - Parameter Injection</h1>
+                <h2 data-i18n-key="htb_htblabs_subtitle" class="text-3xl text-center font-extrabold dark:text-white pb-8">A guide to the 'HTBank (Easy)' challenge</h2>
+                <p data-i18n-key="htb_htblabs_intro" class="text-lg font-normal lg:text-xl">
+                    'HTBank' is an Easy marked challenge from HackTheBox. It is attributed to the 'Web' category. It involves having to discover a specific parameter, and then changing it using an attack referred to as 'Parameter Pollution'. Let's get started!<br><br> Requirements:
+                    <ul data-i18n-key="htb_htblabs_requirements" class="text-lg list-disc list-inside font-normal lg:text-xl">
+                        <li>Internet connection</li> 
+                        <li>Burp Suite Community Edition</li> 
+                        <li>A HackTheBox account with access to the lab</li>
+                    </ul>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_start">First, we'll need to open up the link provided in Burp Suite. Open up the Proxy and turn off the interceptor so we could explore the site. Then we'll open up the browser:</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_1.png" alt="htbank">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_2nd">We're presented with a login/register form. After trying to perform basic SQL injection in the login page, we can see that it doesn't take us anywhere. Let's just try registering for now.</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_2.png" alt="signup_methods">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_3rd">We've registered! Now let's login using the same credentials.</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_3.png" alt="explore_public">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_4th">We're presented with a dashboard of sorts. Clicking 'Add Money' doesn't do anything. However, 'Withdraw Money' looks a lot more promising:</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_4.png" alt="explore_project">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_5th">Let's enter an arbitrary amount of numbers in each field, <b>turn on the intercept</b>, and then click 'Withdraw' to see what happens.</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_5.png" alt="explore_project">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_6th">We can see that the request has been captured. However, to do anything with it, we'll need to send it to Repeater (CTRL+R or Right Click -> Send to Repeater).</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_7th">Let's send the request. We'll see that whatever number we enter, even the one given to us as a clue in the description (1337), we still get the same result. Inputting text also doesn't get us any useful results.</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_6.png" alt="project_view">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_8th">How about we instead inspect the zipped source code. After a bit of digging, we can find the configuration information for the database.</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_7.png" alt="project_dashboard">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_9th">This would normally be useful, however, for this instance, it is pretty much irrelevant. Let's continue on. 'WithdrawController.php' looks particularly interesting:</span>
+                    <img class="py-4" src="../static/css/pictures/htbank_8.png" alt="translate_project">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_10th">After inspection, it seems that if the amount entered when withdrawing is equal to 1337, the show_flag parameter is changed in the database. This is very useful.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_11th">But wait. Didn't we do that before and it returned the same result as with any <i>other</i> number? There must be something blocking us from doing this. Let's inspect 'routes.py':</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/htbank_9.png" alt="translate_context">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_12th">In the 'withdraw' function's 'try' block, we can see that there's an 'if' statement. It checks the users balance, and if it is below zero, it returns an error saying there's not enough credits. This applies to us, since we just created our account and our balance is empty.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_13th">So this is the thing holding us back. If our balance wasn't 0, the request after would follow and our flag would presumably be displayed in the home page, as can be seen in the same file in a previous function:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/htbank_10.png" alt="translate_context">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_14th">This is where parameter pollution comes in. By submitting the 'amount' parameter twice in the same request, first as 0, and then as 1337, we bypass the balance check, and the request containing the flag will be shown to us in the home page. Let's go back to Burp's Repeater:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/htbank_11.png" alt="translate_context">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_15th">Let's copy the 'amount' parameter, change the first one to zero, and the second one to '1337'. And now we get this response:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/htbank_12.png" alt="translate_context">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_16th"><i>Note: If you don't get this response, try first sending 1337 as the first 'amount' value, and <b>only then</b> change it to zero.</i></span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_17th">If we go back to the home page, the flag will be now displayed. Congratulations!</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/htbank_13.png" alt="translate_context">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_htblabs_18th">If you want to read up on parameter pollution more, you can do so on <a href='https://portswigger.net/web-security/api-testing/server-side-parameter-pollution' class='text-yellow-300 hover:underline' target='_blank'>this excellently written PortSwigger article</a>.<br><br></span>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,6 +1,6 @@
 {
     "title": "kulvians",
-    "subtitle": "a dedicated translating community.",
+    "subtitle": "a dedicated technology and translation community.",
     "about": "About Us",
     "contributions": "Contributions",
     "guides": "Guides",
@@ -35,11 +35,11 @@
     "404_p": "Click <a href='/' class='nav__link text-yellow-300 hover:underline' data-link>here</a> to go back.</p>",
 
     "index_welcome": "Welcome!",
-    "index_p": "We are a Lithuanian translating community that’s dedicated to ensuring as many people as possible can enjoy software and media in their own language, and all for free.<br><br> We don’t charge anything for our translations, and we are able to translate from English to Lithuanian and vice versa. Want your software, website, or game to be more available, for free? Contact us!<br><br> If you’re curious about translation or other topics, you can check our compiled experience in the “Guides” section.",
+    "index_p": "We are a Lithuanian translating community that’s dedicated to ensuring as many people as possible can enjoy software and media in their own language, and all for free.<br><br> We don’t charge anything for our translations, and we are able to translate from English to Lithuanian and vice versa. Want your software, website, or game to be more available, for free? Contact us!<br><br> If you’re curious about translation or technology, you can check our compiled experience in the “Guides” section.",
 
     "crowdin_title": "Crowdin - setup guide",
     "crowdin_subtitle": "Translation using crowdin.com",
-    "crowdin_intro": "Crowdin is one of the most popular localization management tools out there, and for good reason! It allows practically anyone, regardless of their experience, to contribute to and review translations. It doesn’t require any programming or IT knowledge, just an internet connection and compatible browser. Let’s get started!<br><br> Requirements:",
+    "crowdin_intro": "Author: nitrog<br><br>Crowdin is one of the most popular localization management tools out there, and for good reason! It allows practically anyone, regardless of their experience, to contribute to and review translations. It doesn’t require any programming or IT knowledge, just an internet connection and compatible browser. Let’s get started!<br><br> Requirements:",
     "crowdin_requirements": "<li>Internet connection</li> <li>Web browser (Chrome, Firefox, etc.)</li>",
     "crowdin_start": "<br>To start with, go to <a href='https://crowdin.com/' class='text-yellow-300 hover:underline' target='_blank'>crowdin.com</a>. This is where we’ll register. Click 'Sign up'",
     "crowdin_2nd": "<br>Sign up using the method you prefer the most. You can either create a separate account, or register using something like Google or GitHub.",
@@ -52,5 +52,28 @@
     "crowdin_9th": "<br>This opens the editor. It may appear overwhelming at first, but you’ll get used to it!",
     "crowdin_10th": "<br>Above, you can see the original text, and below is the field where you type in your translation. Below it, you can see TM and MT (Machine Translation) suggestions, which can help you get a rough idea of what the translation might be. To the right are comments, which are usually left by other translators. To the left is a list of strings (sentences or words) that need to be translated.",
     "crowdin_11th": "<br>Note: Sometimes, there are also contexts given for some words. They can get you a better idea of what the word actually means. You can view them by hovering over them. They are underlined like this:",
-    "crowdin_12th": "<br>That covers the basics! Crowdin is an extremely powerful and easy platform to use, and this guide only scratches the surface. If you’d like to learn more, refer to the official <a href='https://support.crowdin.com/crowdin-intro/' class='text-yellow-300 hover:underline' target='_blank'>Crowdin documentation</a>. It might contain the details you need!<br><br>"
+    "crowdin_12th": "<br>That covers the basics! Crowdin is an extremely powerful and easy platform to use, and this guide only scratches the surface. If you’d like to learn more, refer to the official <a href='https://support.crowdin.com/crowdin-intro/' class='text-yellow-300 hover:underline' target='_blank'>Crowdin documentation</a>. It might contain the details you need!<br><br>",
+
+    "htb_htblabs_title": "HTB - HTBank Guide - Parameter Injection",
+    "htb_htblabs_subtitle": "A guide to the 'HTBank (Easy)' challenge",
+    "htb_htblabs_intro": "Author: nitrog<br><br>'HTBank' is an Easy marked challenge from HackTheBox. It is attributed to the 'Web' category. It involves having to discover a specific parameter, and then changing it using an attack referred to as 'Parameter Pollution'. Let's get started!<br><br> Requirements:",
+    "htb_htblabs_requirements": "<li>Internet connection</li> <li>Burp Suite Community Edition</li> <li>A HackTheBox account with access to the lab</li>",
+    "htb_htblabs_start": "First, we'll need to open up the link provided in Burp Suite. Open up the Proxy and turn off the interceptor so we could explore the site. Then we'll open up the browser:",
+    "htb_htblabs_2nd": "We're presented with a login/register form. After trying to perform basic SQL injection in the login page, we can see that it doesn't take us anywhere. Let's just try registering for now.",
+    "htb_htblabs_3rd": "We've registered! Now let's login using the same credentials.",
+    "htb_htblabs_4th": "We're presented with a dashboard of sorts. Clicking 'Add Money' doesn't do anything. However, 'Withdraw Money' looks a lot more promising:",
+    "htb_htblabs_5th": "Let's enter an arbitrary amount of numbers in each field, <b>turn on the intercept</b>, and then click 'Withdraw' to see what happens.",
+    "htb_htblabs_6th": "We can see that the request has been captured. However, to do anything with it, we'll need to send it to Repeater (CTRL+R or Right Click -> Send to Repeater).",
+    "htb_htblabs_7th": "Let's send the request. We'll see that whatever number we enter, even the one given to us as a clue in the description (1337), we still get the same result. Inputting text also doesn't get us any useful results.",
+    "htb_htblabs_8th": "How about we instead inspect the zipped source code. After a bit of digging, we can find the configuration information for the database.",
+    "htb_htblabs_9th": "This would normally be useful, however, for this instance, it is pretty much irrelevant. Let's continue on. 'WithdrawController.php' looks particularly interesting:",
+    "htb_htblabs_10th": "After inspection, it seems that if the amount entered when withdrawing is equal to 1337, the show_flag parameter is changed in the database. This is very useful.",
+    "htb_htblabs_11th": "But wait. Didn't we do that before and it returned the same result as with any <i>other</i> number? There must be something blocking us from doing this. Let's inspect 'routes.py':",
+    "htb_htblabs_12th": "In the 'withdraw' function's 'try' block, we can see that there's an 'if' statement. It checks the users balance, and if it is below zero, it returns an error saying there's not enough credits. This applies to us, since we just created our account and our balance is empty.",
+    "htb_htblabs_13th": "So this is the thing holding us back. If our balance wasn't 0, the request after would follow and our flag would presumably be displayed in the home page, as can be seen in the same file in a previous function:",
+    "htb_htblabs_14th": "This is where parameter pollution comes in. By submitting the 'amount' parameter twice in the same request, first as 0, and then as 1337, we bypass the balance check, and the request containing the flag will be shown to us in the home page. Let's go back to Burp's Repeater:",
+    "htb_htblabs_15th": "Let's copy the 'amount' parameter, change the first one to zero, and the second one to '1337'. And now we get this response:",
+    "htb_htblabs_16th": "<i>Note: If you don't get this response, try first sending 1337 as the first 'amount' value, and <b>only then</b> change it to zero.</i>",
+    "htb_htblabs_17th": "If we go back to the home page, the flag will be now displayed. Congratulations!",
+    "htb_htblabs_18th": "If you want to read up on parameter pollution more, you can do so on <a href='https://portswigger.net/web-security/api-testing/server-side-parameter-pollution' class='text-yellow-300 hover:underline' target='_blank'>this excellently written PortSwigger article</a>.<br><br>"
 }
