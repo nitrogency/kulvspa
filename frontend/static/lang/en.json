@@ -1,6 +1,6 @@
 {
     "title": "kulvians",
-    "subtitle": "a dedicated translating community.",
+    "subtitle": "a dedicated technology and translation community.",
     "about": "About Us",
     "contributions": "Contributions",
     "guides": "Guides",
@@ -35,7 +35,7 @@
     "404_p": "Click <a href='/' class='nav__link text-yellow-300 hover:underline' data-link>here</a> to go back.</p>",
 
     "index_welcome": "Welcome!",
-    "index_p": "We are a Lithuanian translating community that’s dedicated to ensuring as many people as possible can enjoy software and media in their own language, and all for free.<br><br> We don’t charge anything for our translations, and we are able to translate from English to Lithuanian and vice versa. Want your software, website, or game to be more available, for free? Contact us!<br><br> If you’re curious about translation or other topics, you can check our compiled experience in the “Guides” section.",
+    "index_p": "We are a Lithuanian translating community that’s dedicated to ensuring as many people as possible can enjoy software and media in their own language, and all for free.<br><br> We don’t charge anything for our translations, and we are able to translate from English to Lithuanian and vice versa. Want your software, website, or game to be more available, for free? Contact us!<br><br> If you’re curious about translation or technology, you can check our compiled experience in the “Guides” section.",
 
     "crowdin_title": "Crowdin - setup guide",
     "crowdin_subtitle": "Translation using crowdin.com",
