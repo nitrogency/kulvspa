@@ -16,6 +16,7 @@ export default class extends AbstractView {
                     </div>
                     <div class="max-w-screen-xl text-center">
                         <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_htblabs_title" href="/posts/9" class="nav__link" data-link>HTB - HTBank Guide - Parameter Injection</a></p>
+                        <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_0xchunked_title" href="/posts/10" class="nav__link" data-link>HTB - 0xBOverchunked Guide</a></p>
                     </div>
                 </div>  
             </body>

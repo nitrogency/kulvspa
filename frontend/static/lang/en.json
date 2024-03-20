@@ -75,5 +75,25 @@
     "htb_htblabs_15th": "Let's copy the 'amount' parameter, change the first one to zero, and the second one to '1337'. And now we get this response:",
     "htb_htblabs_16th": "<i>Note: If you don't get this response, try first sending 1337 as the first 'amount' value, and <b>only then</b> change it to zero.</i>",
     "htb_htblabs_17th": "If we go back to the home page, the flag will be now displayed. Congratulations!",
-    "htb_htblabs_18th": "If you want to read up on parameter pollution more, you can do so on <a href='https://portswigger.net/web-security/api-testing/server-side-parameter-pollution' class='text-yellow-300 hover:underline' target='_blank'>this excellently written PortSwigger article</a>.<br><br>"
+    "htb_htblabs_18th": "If you want to read up on parameter pollution more, you can do so on <a href='https://portswigger.net/web-security/api-testing/server-side-parameter-pollution' class='text-yellow-300 hover:underline' target='_blank'>this excellently written PortSwigger article</a>.<br><br>",
+
+    "htb_0xchunked_title": "HTB - 0xBOverchunked Guide",
+    "htb_0xchunked_subtitle": "A guide to the '0xBOverchunked (Easy)' challenge",
+    "htb_0xchunked_intro": "Author: nitrog<br><br>0xBOverchunked is an 'Easy' rated HTB challenge, related to web application exploitation.<br><br> Requirements:",
+    "htb_0xchunked_requirements": "<li>Internet connection</li> <li>Burp Suite Community Edition</li> <li>SQLMap</li> <li>A HackTheBox account with access to the lab</li>",
+    "htb_0xchunked_start": "First, we'll need to open up the link provided in Burp Suite. Open up the Proxy and turn off the intercept so we could explore the site. Then we'll open up the browser:",
+    "htb_0xchunked_2nd": "In this task, we need to find the sixth value being saved in the database. Let's try searching with the presented input field:",
+    "htb_0xchunked_3rd": "It seems like we're not allowed to view the sixth entry. Let's try to perform basic SQL injection.",
+    "htb_0xchunked_4th": "We can see that there's a WAF (Web Application Firewall) present, and it's blocking us from doing the injection. There's probably a programatic filter that checks for suspicious characters. Let's inspect the source code:",
+    "htb_0xchunked_5th": "Seems like our suspicious were correct, as in the 'waf.php' file we can see the filter in place. Looks like we'll have to think of some other way to get the flag. Let's continue with the source code analysis.",
+    "htb_0xchunked_6th": "In the 'cursor.php' of the 'Database' folder, we can find both the code preventing us from viewing the sixth entry, and a clue. We can see that there are two possible types of database queries: 'safequery' and 'unsafequery'. Let's try to find how to trigger this unsafe query.",
+    "htb_0xchunked_7th": "Exploring the 'SearchHandler.php' file, we can see that if the HTTP transfer is chunked, the unsafe query is triggered, which will allow us to search for the sixth entry.",
+    "htb_0xchunked_8th": "According to the <a href='https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests#comparison_to_chunked_transfer-encoding' class='text-yellow-300 hover:underline' target='_blank'>Mozilla web documentation</a>, chunked transfer encoding is often used when larger amounts of data are sent to a client, without buffering the response or determining the exact length. This leads to better latency. Examples of it's use consist of large database queries (to fill an HTML table, for example) or when transmitting large images.",
+    "htb_0xchunked_9th": "In the cybersecurity context, chunked requests can be used to bypass certain SQL injection restrictions. It can split the usually blacklisted SQL keywords between chunks, which can make the request containing them be accepted. For example, the 'SQLMap' tool contains a tamper script utilizing this technique, using the '--chunked' parameter.",
+    "htb_0xchunked_10th": "However, since there aren't any variables being submitted through the URL, we'll need to capture the actual request. For this, turn on the intercept in Burp and submit the search form. You should see the request appear in your Burp Proxy:",
+    "htb_0xchunked_11th": "Now copy everything, create a text file, and paste the request there. Make sure to save the file, and remember where it is.",
+    "htb_0xchunked_12th": "Now let's pass the request to SQLMap, using these parameters:",
+    "htb_0xchunked_13th": "This is what each argument does:<br><br><li>-r - provides the location to the captured request, which SQLMap will use to execute the payload.</li> <li>--chunked - instructs SQLMap to use chunked encoding, which we discussed earlier.</li> <li>--dump - dumps the database table entries.</li> <li>--time-sec=2 - this parameter instructs SQLMap to wait up to 2 seconds for a response. The default is 5, so this speeds up the process.</li> <li>--threads - this parameter instructs SQLMap to use a specific amount of CPU threads. This speeds up the injection process, and allows to retrieve results quicker. The amount of threads you can use depends on your system.</li>",
+    "htb_0xchunked_14th": "If you're prompted with any decisions, go with the default. After a while, you should see the flag:",
+    "htb_0xchunked_15th": "Congratulations, you finished the lab!<br><br>"
 }
