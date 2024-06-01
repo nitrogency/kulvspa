@@ -20,6 +20,9 @@ export default class extends AbstractView {
                     <div class="max-w-screen-xl text-center">
                         <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_0xchunked_title" href="/posts/10" class="nav__link" data-link>HTB - 0xBOverchunked Guide</a></p>
                     </div>
+                    <div class="max-w-screen-xl text-center">
+                        <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_nmap_title" href="/posts/11" class="nav__link" data-link>HTB - Network Enumeration with Nmap Guide</a></p>
+                    </div>
                 </div>  
             </body>
         `;
