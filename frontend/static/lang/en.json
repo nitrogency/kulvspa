@@ -95,5 +95,27 @@
     "htb_0xchunked_12th": "Now let's pass the request to SQLMap, using these parameters:",
     "htb_0xchunked_13th": "This is what each argument does:<br><br><li>-r - provides the location to the captured request, which SQLMap will use to execute the payload.</li> <li>--chunked - instructs SQLMap to use chunked encoding, which we discussed earlier.</li> <li>--dump - dumps the database table entries.</li> <li>--time-sec=2 - this parameter instructs SQLMap to wait up to 2 seconds for a response. The default is 5, so this speeds up the process.</li> <li>--threads - this parameter instructs SQLMap to use a specific amount of CPU threads. This speeds up the injection process, and allows to retrieve results quicker. The amount of threads you can use depends on your system.</li>",
     "htb_0xchunked_14th": "If you're prompted with any decisions, go with the default. After a while, you should see the flag:",
-    "htb_0xchunked_15th": "Congratulations, you finished the lab!<br><br>"
+    "htb_0xchunked_15th": "Congratulations, you finished the lab!<br><br>",
+
+    "htb_nmap_title": "HTB - Network Enumeration with Nmap Guide",
+    "htb_nmap_subtitle": "A guide to the HTB 'Network Enumeration with Nmap' Labs",
+    "htb_nmap_intro": "Author: nitrog<br><br>This excellent HTB module features labs of three difficulties - Easy, Medium and Hard. They are focused on Firewall/IDS evasion using nmap.<br><br> Requirements:",
+    "htb_nmap_requirements": "<li>Internet connection (duh)</li> <li>Nmap</li> <li>A HackTheBox account with access to the module</li>",
+    "htb_nmap_start": "Let's start with the first lab. The IDS seems to be very rudimentary and we are only required to get the OS (note: NOT the version of the OS). There are a few things to mention first, notably, the types of TCP scans we'll be running:",
+    "htb_nmap_2nd": "<li>-sS (SYN scan)</li> <li>-sT (Connect scan)</li> <li>-sA (ACK scan)</li>",
+    "htb_nmap_3rd": "SYN scans in nmap are run by default if you are running the command as root (or with sudo). During a SYN scan, we send a SYN packet to the server, and get returned a two packets: SYN and ACK. Once received, nmap tears down the connection and moves on to the next port.",
+    "htb_nmap_4th": "<b>Strengths:</b><br><br> <li>SYN scans are fast, since we do not actually establish a full connection to the server.</li> <li>SYN scans in general are considered more stealthy, however not always.</li>",
+    "htb_nmap_5th": "<b>Weaknesses:</b><br><br> <li>SYN scans require sudo privileges, because a SYN scan requires raw socket access.</li> <li>SYN scans, while, as mentioned, are considered more stealthy, they're sometimes more prone to being detected by IDS/IPS systems, or network admins (For example, what's more suspicious when monitoring network traffic - a connection that gets destroyed mid-way through being established, or one of many hundreds or thousands of TCP/IP connections?).</li>",
+    "htb_nmap_6th": "Let's move on to Connect scans. These are far simpler - they establish a full TCP connection. A SYN packet is sent, SYN+ACK is received, and then the ACK packet is returned to the server, establishing a TCP connection. Only then is it stopped.",
+    "htb_nmap_7th": "<b>Strengths:</b><br><br> <li>Connect scans require no privileges.</li> <li>Can be more stealthy, depending on monitoring activity.</li> <li>Simpler.</li>",
+    "htb_nmap_8th": "<b>Weaknesses:</b><br><br> <li>Slower, since a full TCP connection gets established. Can be mediated by increasing timing(-T) or the minimum rate(--min-rate).</li> <li>Generally 'louder' and more noticeable, especially on less active networks.</li>",
+    "htb_nmap_9th": "Finally, we have ACK scans. Instead of sending a SYN packet as with the two previous scan types, an ACK packet is sent to the server. The server then responds by sending an RST packet (which closes the connection). With these scans, it is usually more difficult to determine whether the connection was first established from inside or outside the network, making them harder to detect by firewalls. Because of this, while with a SYN or Connect scan, a port may be designated as filtered, with an ACK scan, it might be shown as unfiltered.",
+    "htb_nmap_10th": "<b>Strengths:</b><br><br> <li>Good for checking which ports are filtered.</li> <li>Usually bypasses simple filters or firewall configurations.</li>",
+    "htb_nmap_11th": "<b>Weaknesses:</b><br><br> <li>Limited information - ACK scans do NOT show whether a port is closed or open, only if it is filtered.</li>",
+    "htb_nmap_12th": "Now that we have the boring theory and basics out of the way - let's finally begin. Let's start with a basic SYN scan:",
+    "htb_nmap_13th": "<b>Here are all the arguments explained:</b><br><br> <li>-sS - this specifies a SYN scan, which we just discussed.</li> <li>-sV - determines version of all found services.</li> <li>-sV -Pn - disables host discovery. (not necessary since we're only specifying one host, not a subnet)</li><li>-n - skip DNS resolution. Can increase scan speed.</li><li>--source-port - specifies the port from which to scan. We're using 53 here because it's the default port for DNS queries. This way, it can help mask our scans as legitimate DNS traffic.</li>",
+    "htb_nmap_14th": "And we get the following result:",
+    "htb_nmap_15th": "From the Apache and SSH version, we can gather that this is a Ubuntu system. We have our answer.",
+    "htb_nmap_16th": "Now let's move to something more advanced. For the next lab, we need to get the version of the DNS server. We can do this by utilizing the following command:"
+
 }
