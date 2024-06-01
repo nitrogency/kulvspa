@@ -90,17 +90,79 @@
                     <img class="py-4 mx-auto" src="../static/css/pictures/nmap_2.png" alt="syn_scan">
                 </p>
                 <p class="text-lg font-normal lg:text-xl">
-                    <br><span data-i18n-key="htb_nmap_13th">Now that we have the boring theory and basics out of the way - let's finally begin. Let's start with a basic SYN scan:</span>
+                    <br><ul data-i18n-key="htb_nmap_13th" class="text-lg list-disc list-inside font-normal lg:text-xl">
+                        <b>Here are all the arguments explained:</b><br><br> 
+                        <li>-sS - this specifies a SYN scan, which we just discussed.</li> 
+                        <li>-sV - determines version of all found services.</li> 
+                        <li>-sV -Pn - disables host discovery. (not necessary since we're only specifying one host, not a subnet)</li>
+                        <li>-n - skip DNS resolution. Can increase scan speed.</li>
+                        <li>--source-port - specifies the port from which to scan. We're using 53 here because it's the default port for DNS queries. This way, it can help mask our scans as legitimate DNS traffic.</li>
+                    </ul>
                 </p>
                 <p class="text-lg font-normal lg:text-xl">
-                    <br><span data-i18n-key="htb_nmap_14th">Now that we have the boring theory and basics out of the way - let's finally begin. Let's start with a basic SYN scan:</span>
-                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_1.png" alt="syn_scan">
+                    <br><span data-i18n-key="htb_nmap_14th">And we get the following result:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_1.png" alt="syn_res">
                 </p>
                 <p class="text-lg font-normal lg:text-xl">
-                    <br><span data-i18n-key="htb_nmap_15th">Now that we have the boring theory and basics out of the way - let's finally begin. Let's start with a basic SYN scan:</span>
+                    <br><span data-i18n-key="htb_nmap_15th">From the Apache and SSH version, we can gather that this is a Ubuntu system. We have our answer.</span>
                 </p>
                 <p class="text-lg font-normal lg:text-xl">
-                    <br><span data-i18n-key="htb_nmap_16th">Now that we have the boring theory and basics out of the way - let's finally begin. Let's start with a basic SYN scan:</span>
+                    <br><span data-i18n-key="htb_nmap_16th">Now let's move to something more advanced. For the next lab, we need to get the version of the DNS server. We can do this by utilizing the following command:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_5.png" alt="dns_scan">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br<ul data-i18n-key="htb_nmap_17th" class="text-lg list-disc list-inside font-normal lg:text-xl">
+                        <b>Here are all the arguments explained:</b><br><br> 
+                        <li>-sT - this specifies a Connect scan. You can use a SYN scan, I'm just doing it to keep things different.</li> 
+                        <li>-Pn - disables host discovery. (not necessary since we're only specifying one host, not a subnet)</li>
+                        <li>-n - skip DNS resolution. Can increase scan speed.</li>
+                        <li>--source-port - specifies the port from which to scan. This isn't used with Connect scans, so it doesn't need to be here.</li>
+                        <li>-D RND:5 - specifies a decoy scan. Together with RND, it generates five random IP addresses, inserting our real IP between them. This helps disguise the origin of the sent packets.</li>
+                    </ul>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_18th">Using this, we get a list of ports:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_3.png" alt="port_list">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_19th">Since we need the version of the DNS server, we're gonna need to investigate port 53, which appears filtered. Let's try only scanning the port (-p 53), and checking the version using -sV, while keeping the command identical to before (still doing a Connect scan).</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_4.png" alt="dns_ver">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_20th">We can find the flag in the VERSION tab of the scan result. And if you're curious, yes, we also get the result if we perform a SYN scan:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_6.png" alt="dns_flag">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_21st">Let's move on to the last lab in this module. For this, we're gonna need to find out the version of some sort of new service that's appeared. Let's launch a general scan:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_7.png" alt="ibm_scan">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><ul data-i18n-key="htb_nmap_22nd" class="text-lg list-disc list-inside font-normal lg:text-xl">
+                        <b>Here are all the arguments explained:</b><br><br> 
+                        <li>-sS - this specifies a SYN scan.</li>
+                        <li>-Pn - disables host discovery. (not necessary since we're only specifying one host, not a subnet)</li>
+                        <li>-n - skip DNS resolution. Can increase scan speed.</li>
+                        <li>--source-port - specifies the port from which to scan.</li>
+                        <li>-D RND:5 - specifies a decoy scan. Together with RND, it generates five random IP addresses, inserting our real IP between them. This helps disguise the origin of the sent packets.</li>
+                    </ul>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_23rd">We can see the new service - it being IBM's database manager over at port 50000. Let's launch a service version scan for this specific port:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_8.png" alt="ibm_res">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_24th">We don't seem to be getting any results. If we try to switch scan type, we don't get anything better either. However, the port is deemed open. Let's instead try to connect using netcat, and see if we can grab the banner that way (don't forget sudo!):</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_10.png" alt="ibm_fail">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_25th">And we get the flag. By the way, the only reason we weren't being filtered was because of an earlier command we used! Can you guess which?:</span>
+                    <img class="py-4 mx-auto" src="../static/css/pictures/nmap_9.png" alt="ibm_flag">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_26th">It was our source port. It seems disgusing ourselves as a DNS service allowed us to bypass certain filtering rules.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_nmap_27th">That concludes this guide. Nmap is a fantastic tool, and HTB is an equally fantastic place to learn more about it! Make sure to check both out if you're interested. Thanks for reading!</span>
                 </p>
             </div>
         </div>
