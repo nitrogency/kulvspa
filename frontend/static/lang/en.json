@@ -127,5 +127,5 @@
     "htb_nmap_24th": "We don't seem to be getting any results. If we try to switch scan type, we don't get anything better either. However, the port is deemed open. Let's instead try to connect using netcat, and see if we can grab the banner that way (don't forget sudo!):",
     "htb_nmap_25th": "And we get the flag. By the way, the only reason we weren't being filtered was because of an earlier command we used! Can you guess which?:",
     "htb_nmap_26th": "It was our source port. It seems disgusing ourselves as a DNS service allowed us to bypass certain filtering rules.",
-    "htb_nmap_27th": "That concludes this guide. Nmap is a fantastic tool, and HTB is an equally fantastic place to learn more about it! Make sure to check both out if you're interested. Thanks for reading!"
+    "htb_nmap_27th": "That concludes this guide. Nmap is a fantastic tool, and HTB is an equally fantastic place to learn more about it! Make sure to check both out if you're interested. Thanks for reading!<br><br>"
 }
