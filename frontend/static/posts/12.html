@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>HTB - Footprinting Guide</title>
+        <style>
+            .highlight-done {
+                font-weight: bold;
+                color: #eab308;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="max-w-screen-md mx-auto">
+            <div class="flex flex-col justify-start py-8 h-screen">
+                <h1 data-i18n-key="htb_foot_title" class="text-5xl text-left font-extrabold text-center pb-8">HTB - Footprinting Guide</h1>
+                <h2 data-i18n-key="htb_foot_subtitle" class="text-3xl text-center font-extrabold dark:text-white pb-8">A guide to the HTB "Footprinting" Labs</h2>
+                <p data-i18n-key="htb_foot_intro" class="text-lg font-normal lg:text-xl">
+                    Author: nitrog<br><br>This HTB module features labs of three difficulties - Easy, Medium and Hard. <br><br> Requirements:
+                    <ul data-i18n-key="htb_foot_requirements" class="text-lg list-disc list-inside font-normal lg:text-xl">
+                        <li>Internet connection</li> 
+                        <li>Your own pentesting VM or access to HTB's Pwnbox</li> 
+                        <li>A HackTheBox account with access to the module</li>
+                    </ul>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_start">Let's start with the first and easiest lab. We're given a DNS server as a target, a pair of credentials (ceil:qwer1234) and a hint about something having to do with SSH keys. Since we know there likely aren't any IDS/IPS systems, we can run a basic nmap scan.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_1.png" alt="foot_1">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_2nd">We can see four open ports - one for FTP, one for SSH, one for DNS (ISC) and another one for FTP. Though this one seems like it's instead a proxy for FTP, and is called "Ceil's FTP". Since the username we were given is "ceil", we can probably use them here. Let's try logging into this FTP proxy.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_2.png" alt="foot_2">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_3rd">And we have successfully logged in as "ceil". If we remember, there was something said about SSH keys, so let's look for those. Running "ls -la" shows us the .ssh directory, which we can cd into. Upon running "ls -la" again, we can see the private key.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_3.png" alt="foot_3">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_4th">We can download the key using "get id_rsa" and then use it to login through ssh.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_4.png" alt="foot_4">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_5th">Don't forget to chmod it's permissions to 600, otherwise it won't connect due to the key being accessible to other users on our local system.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_5.png" alt="foot_5">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_6th">Now we've successfully logged in. We can try navigating the filesystem and find the flag:</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_6.png" alt="foot_6">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_7th">That's the easy part done. Let's move on to the next lab. This time we're snooping an internal server, and are looking for the credentials of the "HTB" user. Let's again start with a basic nmap scan.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_7.png" alt="foot_7">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_8th">We can see we're dealing with a windows system, and a SMB setup. We can also spot an RDP port on 3389, which we might be able to use to connect. There's an NFS share on port 2049, let's try to see if there are any shares on it (the -e argument lists all exported file systems).</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_8.png" alt="foot_8">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_9th">We can see a share that's accessible to everyone. Let's try mounting it (don't forget to first create a directory in which we'll mount the drive using mkdir!). If we get permission denied errors, we can upgrade our shell to root using 'sudo i'.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_9.png" alt="foot_9">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_10th">In this root shell, we can explore the mounted drive.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_10.png" alt="foot_10">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_11th">We can see a loooot of support tickets. We can do this in two ways: either seeing that only one of them takes up any space, or by just printing the contents of each one using 'cat *':</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_11.png" alt="foot_11">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_12th">And here are the contents of the discovered ticket:</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_12.png" alt="foot_12">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_13th">It appears a config file was sent over plaintext and we can see the credentials embedded within (alex:lol123!mD). Let's try using them against that RDP port we found way earlier!</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_13.png" alt="foot_13">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_14th">Here, '/u' and '/p' are for the password, and '/v' is for the IP. Using this command, we get successfully logged in.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_14.png" alt="foot_14">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_15th">Once logged in, we can try launching the MS SQL Management Studio, where we might discover the 'HTB' user's credentials.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_15.png" alt="foot_15">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_16th">However, it seems that alex's credentials might not work here. We can dig around for further info on the system itself:</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_16.png" alt="foot_16">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_17th">And indeed we find someone's credentials, the database administrator's, in fact (sa:87N1ns@slls83)! However, we still might not be able to login as DB admin through alex. Since a lot of people reuse passwords, what if we used the database admin's password for the server's admin login?</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_17.png" alt="foot_17">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_18th">It worked! (the reason we used 'Administrator' instead of 'sa', is because 'sa' is the database admin's username, not the system admin's)</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_19th">We can now try accessing the database. We'll need to select the top 1000 rows, and then edit the query to look for the 'HTB' user.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_18.png" alt="foot_18">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_20th">Let's edit the query and then run it again. And that's how we get our flag.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_19.png" alt="foot_19">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_21th">On to the last lab! This one's apparently some sort of management server. Again, we need to find the 'HTB' user's credentials, and again, let's launch a nmap scan.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_20.png" alt="foot_20">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_22nd">Lots of POP3 and IMAP ports. This is obviously a mailserver. Unless we have credentials, we won't really be able to do anything. Maybe we should try a UDP scan? (It might take a while, don't get concerned if it does)</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_21.png" alt="foot_21">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_23rd">Indeed, we find that an SNMP service is running! We can enumerate it using a tool called onesixtyone (the -c argument points to a wordlist used for bruteforcing). SNMP is a protocol used for managing network devices, and uses something called 'community strings'. These are basically passwords, which are used to authenticate between network devices to exchange information. These commmunity strings can be bruteforced, allowing access to the device.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_31.png" alt="foot_22">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_24th">And here we get our community string (called 'backup'). We can then use it to bruteforce OIDs. OIDs (Object IDentifiers) in the SNMP protocol are used for recognizing devices and indicating their information. Basically, a device sends a request, their community string gets verified, and information about their inquired OID is retrieved and sent back to them. Using a tool called braa, we can bruteforce these OIDs.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_32.png" alt="foot_23">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_23.png" alt="foot_23">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_25th">Between everything, we can find a pair of credentials embedded within the responses (tom:NMds732Js2761). Let's try using this with the IMAP service (We can also use POP3, but IMAP supports more commands and is generally easier to use).</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_22.png" alt="foot_24">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_24.png" alt="foot_24">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_26th">Now we need to examine any possible emails we can find:</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_25.png" alt="foot_26">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_26.png" alt="foot_27">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_27th">We end up retrieving a private key which seems to belong to someone called tom. We can use this to SSH into the device. Copy the key into a file and chmod it to 600 like we did earlier.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_27.png" alt="foot_28">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_28th">Since what we're looking for is inside a database, we can try to use tom's credentials to login to the mysql database.</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_30.png" alt="foot_30">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <br><span data-i18n-key="htb_foot_29th">By exploring the database, we can find the HTB user and their password. The lab is ours!</span>
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_28.png" alt="foot_29">
+                </p>
+                <p class="text-lg font-normal lg:text-xl">
+                    <img class="py-4 mx-auto" src="../static/css/pictures/foot_29.png" alt="foot_30">
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
