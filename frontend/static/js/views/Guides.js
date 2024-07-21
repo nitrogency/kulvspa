@@ -26,6 +26,9 @@ export default class extends AbstractView {
                     <div class="max-w-screen-xl text-center">
                         <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_foot_title" href="/posts/12" class="nav__link" data-link>HTB - Footprinting Guide</a></p>
                     </div>
+                    <div class="max-w-screen-xl text-center">
+                        <p class="text-lg font-normal lg:text-xl"><a data-i18n-key="htb_webrec_title" href="/posts/14" class="nav__link" data-link>HTB - Information Gathering (Web Edition) Skills Assessment guide</a></p>
+                    </div>
                 </div>  
             </body>
         `;

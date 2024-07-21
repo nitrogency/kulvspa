@@ -163,5 +163,32 @@
     "htb_foot_26th": "Now we need to examine any possible emails we can find:",
     "htb_foot_27th": "We end up retrieving a private key which seems to belong to someone called tom. We can use this to SSH into the device. Copy the key into a file and chmod it to 600 like we did earlier.",
     "htb_foot_28th": "Since what we're looking for is inside a database, we can try to use tom's credentials to login to the mysql database.",
-    "htb_foot_29th": "By exploring the database, we can find the HTB user and their password. The lab is ours!"
+    "htb_foot_29th": "By exploring the database, we can find the HTB user and their password. The lab is ours!",
+
+    "htb_webrec_title": "HTB - Information Gathering (Web Edition) Skills Assessment Guide",
+    "htb_webrec_subtitle": "A guide to the HTB 'Information Gathering (Web Edition)' skills assessment.",
+    "htb_webrec_intro": "Author: nitrog<br><br>This HTB module features a skills assessment at the end, featuring questions of various difficulties. <br><br> Requirements:",
+    "htb_webrec_requirements": "<li>Internet connection</li> <li>Your own pentesting VM or access to HTB's Pwnbox</li> <li>A HackTheBox account with access to the module</li>",
+    "htb_webrec_start": "We're first given a domain together with an IP address and port. If we want to access and use this domain, we're gonna need to append it to our /etc/hosts file.",
+    "htb_webrec_2nd": "The /etc/hosts file acts as sort of a local DNS server, allowing you to bind an IP address to a domain manually, bypassing having to go through an actual DNS server, which might not have the domain you want to connect to. This is useful for testing and development purposes, since everything is accessible and configured locally.",
+    "htb_webrec_3rd": "So let's append the given IP to the hosts file. DO NOT include the port, otherwise it won't work. We'll specify it together with the domain whenever we're doing something.",
+    "htb_webrec_4th": "Note: you probably will have to use sudo in order to edit the hosts file. The command looks like this:",
+    "htb_webrec_5th": "Edit the entry so it looks something like this:",
+    "htb_webrec_6th": "Once done, save the file and exit. We're not gonna do anything with the domain we added now, but it will be useful for later. Let's move on to the first question.",
+    "htb_webrec_7th": "We're asked to find the IANA ID of the registrar of the given domain (note: the question is about inlanefreight.com, NOT inlanefreight.htb which we just added). We can find the IANA ID using a simple WHOIS command like this:",
+    "htb_webrec_8th": "Annnd we have our answer. On to the next!",
+    "htb_webrec_9th": "We're asked 'What http server software is powering the inlanefreight.htb site on the target system?'. We can find this in many ways, however, the most simple is a banner grab using cURL or ncat. The cURL command would look like this (don't forget to add the port after the domain!):",
+    "htb_webrec_10th": "The third question is 'What is the API key in the hidden admin directory that you have discovered on the target system?'. The question is reffering to some sort of secret directory we're not aware of. One of the simplest ways of discovering such directories is the robots.txt file, which instructs web crawlers what directories they can and can't browse. Let's check it out for ourselves:",
+    "htb_webrec_11th": "We can see there's no such directory. Maybe we need to scan for any possible subdomains we're missing out on. We can do so with gobuster:",
+    "htb_webrec_comment": "(The --append-domain flag is required to append the base domain to each word in the wordlist. This flag ensures that Gobuster correctly constructs the full virtual hostnames while enumerating.)",
+    "htb_webrec_12th": "Once found, don't forget to add this domain the same way we did earlier (assign the same IP address). Let's try seeing if this one's holding the robots.txt file:",
+    "htb_webrec_13th": "And it appears we were correct, the robots.txt file is here. We can see a 'hidden' directory specified, let's try accessing it:",
+    "htb_webrec_14th": "Looks like someone's left their API key here. We have our answer.",
+    "htb_webrec_15th": "Next question is a lengthy one: <br><br> 'After crawling the inlanefreight.htb domain on the target system, what is the email address you have found?' <br><br> We're gonna have to use a scraper for this. While there are many tools, we'll be using Scrapy for it's simplicity. You can install it like this:",
+    "htb_webrec_16th": "Let's try running it against the two domains that we have:",
+    "htb_webrec_17th": "It appears neither one of them produced any results, however (you can view them using 'cat results.json'). Maybe we need to enumerate further the subdomain that we discovered earlier?:",
+    "htb_webrec_18th": "And we're rewarded with another subdomain. What if we crawl this one instead?:",
+    "htb_webrec_19th": "We get the email at the very top of the results. While we haven't even reached the next question ('What is the API key the inlanefreight.htb developers will be changing to?'), we can find the answer for it at the bottom!",
+    "htb_webrec_20th": "This concludes the self asssessment lab. Thanks for reading!<br><br>"
+    
 }
