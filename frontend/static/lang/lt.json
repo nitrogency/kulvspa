@@ -163,5 +163,32 @@
     "htb_foot_26th": "Dabar reikia išnagrinėti visus galimus rastus el. laiškus:",
     "htb_foot_27th": "Galiausiai išgauname privatų raktą, kuris, atrodo, priklauso asmeniui vardu tom. Jį galime naudoti SSH prisijungimui prie įrenginio. Nukopijuokite raktą į failą ir chmodinkite jį į 600, kaip tai darėme anksčiau.",
     "htb_foot_28th": "Kadangi tai, ko ieškome, yra duomenų bazėje, galime pabandyti panaudoti atrastus tom vartotojo duomenis.",
-    "htb_foot_29th": "Naršydami duomenų bazėje galime rasti 'HTB' naudotoją ir jo slaptažodį. Vėliava mūsų!"
+    "htb_foot_29th": "Naršydami duomenų bazėje galime rasti 'HTB' naudotoją ir jo slaptažodį. Vėliava mūsų!",
+
+    "htb_webrec_title": "HTB - Information Gathering (Web Edition) Skills Assessment aprašas",
+    "htb_webrec_subtitle": "Aprašas, skirtas HTB 'Information Gathering (Web Edition)' įgūdžių įtvirtinimo užduočiai.",
+    "htb_webrec_intro": "Autorius: nitrog<br><br>Šis HTB modulis gale turi užduotį, kurią sudaro skirtingo sunkumo klausimai. <br><br> Requirements:",
+    "htb_webrec_requirements": "<li>Interneto prieiga</li> <li>Pentestavimo aplinka, pvz. HTB 'Pwnbox' arba virtuali mašina</li> <li>HackTheBox paskyra su prieiga prie modulio</li>",
+    "htb_webrec_start": "Pirmiausia mums suteikiamas domenas, IP adresas ir prievadas. Jei norime gauti prieigą prie šio domeno ir juo naudotis, turėsime jį įtraukti į savo '/etc/hosts' failą.",
+    "htb_webrec_2nd": "/etc/hosts failas veikia kaip vietinis DNS serveris, leidžiantis susieti IP adresą su domenu rankiniu būdu, apeinant tikrą DNS serverį, kuriame gali nebūti domeno, prie kurio norim prisijungti. Tai naudinga testavimo ir kūrimo tikslais, nes viskas pasiekiama ir konfigūruojama lokaliai.",
+    "htb_webrec_3rd": "Taigi pridėkime duotąjį IP prie hosts failo. NEĮRAŠYKITE prievado, kitaip neveiks. Kai reikės, jį nurodysime kartu su domenu.",
+    "htb_webrec_4th": "Pastaba: norėdami redaguoti hosts failą, tikriausiai turėsite naudoti sudo. Komanda atrodo taip:",
+    "htb_webrec_5th": "Redaguokite įrašą taip, kad jis atrodytų maždaug taip:",
+    "htb_webrec_6th": "Baigus išsaugokite failą ir išeikite. Dabar nieko nedarysim su pridėtu domenu, tačiau jis bus naudingas vėliau. Pereikim prie pirmojo klausimo.",
+    "htb_webrec_7th": "Mūsų prašoma surasti nurodyto domeno registratoriaus IANA ID (atkreipkite dėmesį: klausimas susijęs su inlanefreight.com, o ne su inlanefreight.htb, kurį ką tik pridėjom). IANA ID galime rasti naudodami paprastą WHOIS komandą, pvz:",
+    "htb_webrec_8th": "Irrr mes turim atsakymą. Toliau!",
+    "htb_webrec_9th": "Mūsų klausiama kokia http serverio programinė įranga valdo inlanefreight.htb svetainę. Tai galime sužinoti įvairiais būdais, tačiau paprasčiausias yra 'banner grabbing' naudojant cURL arba ncat. cURL komanda atrodytų taip (nepamirškite po domeno įrašyti prievado!):",
+    "htb_webrec_10th": "Trečiam klausime prašoma API rakto, kuris yra slaptame administratoriaus subdirektorijoje. Klausime kalbama apie kažkokį slaptą katalogą, apie kurį mes nežinome. Vienas paprasčiausių būdų tokiems katalogams aptikti yra robots.txt failas, kuriame nurodoma, kokius katalogus 'web crawlers' gali naršyti, o kokių - ne. Patys jį patikrinkime:",
+    "htb_webrec_11th": "Matome, kad tokio katalogo nėra. Galbūt esame praleidę kokį nors subdomeną, kuriame ir rastumėm tą failą. Skenuoti subdomenus galime naudodami gobuster įrankį:",
+    "htb_webrec_comment": "(Kad prie kiekvieno žodžio žodžių sąraše būtų pridėtas bazinis domenas, reikia nurodyti pasirinkimą '--append-domain'. Jis užtikrina, kad gobuster teisingai sukonstruotų pilnus domenus.)",
+    "htb_webrec_12th": "Suradę nepamirškite pridėti šio domeno į '/etc/hosts' taip pat, kaip tai darėm anksčiau (priskirkite tą patį IP adresą). Pabandykime pažiūrėti, ar šis turi robots.txt failą:",
+    "htb_webrec_13th": "Ir atrodo, kad mes buvome teisūs, robots.txt failas yra čia. Matome nurodytą paslėptą katalogą, pabandykime jį pasiekti:",
+    "htb_webrec_14th": "Rodos jog kažkas čia paliko savo API raktą. Turime atsakymą.",
+    "htb_webrec_15th": "Kitame klausime mūsų prašo sužinoti el. pašto adresą, kurį galima atrasti domene. <br><br> Šitam reikės panaudoti scraper'į. Nors yra daug tam skirtų įrankių, naudosime 'Scrapy' dėl jo paprastumo. Jį įdiegti galima šitaip:",
+    "htb_webrec_16th": "Pabandykime jį paleisti su dviem jau turimais domenais:",
+    "htb_webrec_17th": "Tačiau atrodo, kad nė vienas iš jų nedavė jokių rezultatų (juos galite peržiūrėti naudodami 'cat results.json'). Galbūt mums reikia toliau ištirti subdomeną, kurį aptikome anksčiau?:",
+    "htb_webrec_18th": "Už tai esame apdovanoti dar vienu subdomenu. Kas būtų, jei nuskaitytumėm ir jį?:",
+    "htb_webrec_19th": "Gauname el. laišką pačiame rezultatų viršuje. Nors dar net nepasiekėme kito klausimo (prašoma surasti API raktą, į kurį bus keičiamasi ateityje), atsakymą į jį galime rasti apačioje!",
+    "htb_webrec_20th": "Tokia būtų šios savitikros užduoties pabaiga. Ačiū kad skaitėt!<br><br>"
 }
+    
