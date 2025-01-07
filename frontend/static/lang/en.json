@@ -21,6 +21,9 @@
     "authext_desc": "This is a handy Firefox extension for generating two-factor authentication (2FA) codes in your browser. It supports TOTP, HOTP, and even Steam Guard!<br><br> And to make things even better, it’s open-source. You can find both the extension and it’s source code <a href='https://authenticator.cc/' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
     "jelu_desc":"Jelu is an open-source, self-hosted reading tracker! Ever wanted to have a place where to track your reading? Then this app might be for you! It's extensive documentation and installation guide can be found <a href='https://bayang.github.io/jelu-web/' class='text-yellow-300 hover:underline'target='_blank'>here</a>.<br><br>If you want to contribute to our translation or add your own, you can find the translation project <a href='https://crowdin.com/project/jelu' class='text-yellow-300 hover:underline'target='_blank'>here</a>.",
     "gdevelop_desc": "GDevelop is a 2D and 3D cross-platform, completely free and open-source game engine, designed to allow creating games without coding! We think this is an amazing way to get into game development, and as such, decided to help translate this project. <br><br>You can download it <a href='https://gdevelop.io/' class='text-yellow-300 hover:underline'target='_blank'>here</a>, and the translation project can be found <a href='https://crowdin.com/project/gdevelop' class='text-yellow-300 hover:underline'target='_blank'>here</a>.",
+    "translation": "Translation",
+    "htb": "Hack The Box",
+    "tech": "Tech",
 
     "about_who": "Who are we?",
     "about_p": "We are a relatively small community of tech enthusiasts and translators from Lithuania who wish to preserve our language. Our idea of free translation was inspired by the <a href='https://en.wikipedia.org/wiki/Free_and_open-source_software' class='text-yellow-300 hover:underline' target='_blank'> FOSS movement</a>. Since software can be open-source, we decided to bring that same idea to another aspect of every program – localization.",
@@ -222,7 +225,28 @@
     "htb_shells_25th": "It appears the target's vulnerable. All that's left is to find and launch the exploit itself and launch it instead of the scanner (using the psexec variant here since it's been personally more reliable): ",
     "htb_shells_26th": "And we get a shell. We can find the hostname by doing the following: ",
     "htb_shells_27th": "We can find the final flag by going to the Desktop: ",
-    "htb_shells_28th": "That concludes the guide! Thanks for reading!<br><br>"
+    "htb_shells_28th": "That concludes the guide! Thanks for reading!<br><br>",
 
-    
+    "tech_ubuntuauto_title": "Ubuntu - creating unattended/automatic .ISO's",
+    "tech_ubuntuauto_subtitle": "A guide to creating unattended/automatic Ubuntu Server and Ubuntu Desktop .ISO files",
+    "tech_ubuntuauto_intro": "Author: nitrog<br><br>Ever had a situation where you wanted to create an automatic, pre-configured Ubuntu .ISO file that you can just mount, boot and the rest gets done on it's own? With this guide, we'll learn how to do just that.<br><br> Requirements:",
+    "tech_ubuntuauto_requirements": "<li>Internet connection</li> <li><a href='https://github.com/nitrogency/ubuntu_autoinstall' class='text-yellow-300 hover:underline' target='_blank'>Ubuntu autoinstall script</a></li>",
+    "tech_ubuntuauto_start": "We're going to cover the basics of how Ubuntu autoinstall works in general. If you're interested in just the actual script usage and setup process, feel free to skip to <a href='#anchor' class='text-yellow-300 hover:underline'>here</a>.",
+    "tech_ubuntuauto_2nd": "Now, Ubuntu autoinstallation, sometimes also referred to as 'unattended' or 'preseeded' installation, allows the pre-configuration of most options, including installed packages, enabled services, and even network settings. With a pre-configured file such as this, you can then completely install the OS on a new machine without any user interaction.",
+    "tech_ubuntuauto_3rd": "Since Ubuntu is based on Debian, older Ubuntu autoinstallation configuration shared the same format as Debian's. This was known as 'preseeding'. We won't delve into it any further, but what's important to know is that since Ubuntu Server's 20.04 and Ubuntu Desktop's 23.04, Ubuntu switched to it's own 'autoinstall' format. This granted several benefits, such as taking the default option if none is specified in the configuration instead of asking for user input, or being able to designate certain installation options as interactive in case you need to change them manually. It also made the switch to a .yaml file, instead of using <a href='https://manpages.debian.org/bookworm/debconf/debconf-set-selections.1.en.html' class='text-yellow-300 hover:underline' target='_blank'>debconf-set-selections</a>.",
+    "tech_ubuntuauto_4th": "Now, upon booting a Ubuntu .ISO, a service called 'subiquity', which manages the installation process, starts and begins to look for the 'autoinstall' config. All commands and possibilities of 'autoinstall' are described <a href='https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html' class='text-yellow-300 hover:underline' target='_blank'>here</a>.",
+    "tech_ubuntuauto_5th": "So, to create an automatically installed .ISO, we need to:",
+    "tech_ubuntuauto_6th": "<li>Get the original .ISO, which we will modify.</li>",
+    "tech_ubuntuauto_7th": "<li>Create user-data and meta-data config files, which will contain the 'autoinstall' instructions.</li>",
+    "tech_ubuntuauto_8th": "<li>Edit the GRUB booloader to take the user-data and meta-data config files.</li>",
+    "tech_ubuntuauto_9th": "<li>Save the edited .ISO file and boot it.</li>",
+    "tech_ubuntuauto_10th": "All of these steps can be automatically done by the script we'll be using. So, without further delay, let's get started!",
+    "tech_ubuntuauto_11th": "First, we're going to need to clone the repository for the script, the link for which you can find in the requirements section. You can do this either by downloading the archive, or by using git:",
+    "tech_ubuntuauto_12th": "Change into the downloaded directory and install the Python dependencies using pip:",
+    "tech_ubuntuauto_13th": "Let's see all the options that are available using the -h flag:",
+    "tech_ubuntuauto_14th": "If you want to, you can write your own configuration file, or choose a specific .ISO to modify. However, for demonstration purposes, we'll take all the default options, and just run the script as is:",
+    "tech_ubuntuauto_15th": "Once the .ISO is downloaded, we'll be prompted to change some basic settings. We'll be leaving the defaults, but if you're planning to use this installation, you should definitely pick a strong password and include some SSH keys:",
+    "tech_ubuntuauto_16th": "Now, all that's left is to boot the .ISO (saved as 'output.iso'). In this example, we'll be using VMWare Player:",
+    "tech_ubuntuauto_17th": "Upon loading the ISO, the entire installation process begins on its own. Afterwards, the machine will automatically shut off. After turning it on again, we'll be presented with the login screen, and a running Ubuntu Server.",
+    "tech_ubuntuauto_18th": "That's it! We've now created an automated Ubuntu .ISO. As mentioned, if you want to you can write your own configuration file using Ubuntu's 'autoinstall' documentation and then pass it to the tool. Thanks for reading! <br><br>"
 }
